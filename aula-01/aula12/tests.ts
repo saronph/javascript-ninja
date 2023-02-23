@@ -10,4 +10,4 @@ const newObj = {
 
 newObj.contacts.email = 'new_email';
 
-console.log();
+console.log(oldObj === newObj); // false
