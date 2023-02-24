@@ -27,20 +27,17 @@ as seguintes características:
     this.lastName = lastName;
     this.age = age;
 
-    this.getFullName = function () {
+    this.getFullName = function getFullName() {
       return `${name} ${lastName}`;
     };
-    this.getAge = function () {
-      return age;
+    this.getAge = function getAge() {
+      return this.age;
     };
-    this.addAge = function () {
-      return (this.age = this.age + arguments[0]);
+    this.addAge = function addAge() {
+      this.age = this.age + arguments[0];
+      return this;
     };
   }
-
-  var person = new Person('Saron', 'Medeiros', 34);
-
-  console.log('test', person);
 
   /*
 Crie 3 novos objetos usando o construtor acima. Os objetos serão novas
@@ -81,7 +78,13 @@ cada um. A frase deverá ser no formato:
 - "[NOME COMPLETO] agora tem [NOVA IDADE] anos."
 */
   console.log('\nNova idade das pessoas:');
-  console.log(`${person1.getFullName()} agora tem ${person1.addAge(10)} anos`);
-  console.log(`${person2.getFullName()} agora tem ${person2.addAge(10)} anos`);
-  console.log(`${person3.getFullName()} agora tem ${person3.addAge(10)} anos`);
+  console.log(
+    `${person1.getFullName()} agora tem ${person1.addAge(10).getAge()} anos`
+  );
+  console.log(
+    `${person2.getFullName()} agora tem ${person2.addAge(10).getAge()} anos`
+  );
+  console.log(
+    `${person3.getFullName()} agora tem ${person3.addAge(10).getAge()} anos`
+  );
 })();
