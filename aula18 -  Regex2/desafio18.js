@@ -7,154 +7,111 @@
 */
 
   /*
-Em todos os exercícios desse desafio, nós vamos utilizar expressões
-regulares! Para isso, iremos usar o texto abaixo. Coloque-o em uma
-variável chamada `text`:
-"Manuel Marques de Sousa, Conde de Porto Alegre (Rio Grande, 13 de junho de 1804 – Rio de Janeiro, 18 de julho de 1875), 
-apelidado de "O Centauro de Luvas", foi um militar, político, abolicionista e monarquista brasileiro."
+Crie uma função chamada `cleanCPF`, que receba um CPF por parâmetro, e
+retorne esse CPF limpo (somente os números).
+Usando os CPFs abaixo, mostre no console que a limpeza funciona para todos
+eles! Use um console.log para cada CPF.
+- "049-214 3421-1"
+- "210.458.522-05"
+- "735 500 794 - 22"
+- "101.123-131x32"
 */
-  var text =
-    "Manuel Marques de Sousa, Conde de Porto Alegre (Rio Grande, 13 de junho de 1804 – Rio de Janeiro, 18 de julho de 1875), apelidado de 'O Centauro de Luvas', foi um militar, político, abolicionista e monarquista brasileiro.";
+  console.log('Limpando CPFs:');
+  function cleanCPF(cpf) {
+    return cpf.replace(/[^0-9]/g, '');
+  }
+
+  console.log(cleanCPF('049-214 3421-1'));
+  console.log(cleanCPF('210.458.522-05'));
+  console.log(cleanCPF('735 500 794 - 22'));
+  console.log(cleanCPF('101.123-131x32'));
 
   /*
-Vamos começar com umas brincadeiras fáceis :D
-Troque o nome "Manuel Marques de Sousa" pelo seu nome, e mostre o resultado
-no console:
+Usando os CPFs limpos acima, deixe-os com a formatação correta de CPF.
+Ex.: "999.999.999-99"
+Mostre o resultado no console.
 */
-  console.log('Adicionando seu nome no texto:');
-  var myName = text.replace(
-    /Manuel Marques de Sousa/,
-    'Saron Medeiros Philippi'
-  );
-  console.log(myName);
-
-  /*
-Agora, substitua a palavra "brasileiro" por sua cidade natal e mostre no
-console.
-Ex: Se você for da São Paulo, substitua por "paulista".
-*/
-  console.log('\nTrocando naturalidade:');
-  var myAddress = myName.replace(/brasileiro/g, 'catarinense');
-  console.log(myAddress);
-
-  /*
-Substitua todos os números por um traço `-`. Cada caractere de número deve
-ser um traço. Mostre o resultado no console:
-*/
-  console.log('\nTrocando números por -:');
-  var numberSlash = myAddress.replace(/\d/g, '-');
-  console.log(numberSlash);
-
-  /*
-Substitua todas as letras (somente letras) de "D" maiúsculo até "h"
-minúsculo por "0" (número zero). Mostre o resultado no console:
-*/
-  console.log('\nTrocando de "D" a "h" por "0":');
-  var letterToZero = numberSlash.replace(/[D-Hd-h]/g, '0');
-  console.log(letterToZero);
-
-  /*
-Substitua todos os "A" (maiúsculos ou minúsculos) por "4".
-Mostre o resultado no console:
-*/
-  console.log('\nTrocando "A" e "a" por "4":');
-  var letterToZero = numberSlash.replace(/A/gi, '4');
-  console.log(letterToZero);
-
-  /*
-Substitua a frase "O Centauro de Luvas", deixando-a em caixa alta, usando
-o método `toUpperCase()`. Mostre o resultado no console:
-*/
-  console.log('\n"O Centauro de Luvas" em caixa alta:');
-  var upperCentaur = numberSlash.replace(
-    /O Centauro de Luvas/g,
-    function (total) {
-      return total.toUpperCase();
-    }
-  );
-  console.log(upperCentaur);
-
-  /*
-Agora iremos substituir as datas no formato "13 de junho de 1804" para
-"13/06/1804". A primeira coisa a fazer é criar uma função chamada
-`getMonthNumber`, que irá receber um parâmetro (será o nome do mês) e deverá
-retornar o número correspondente a esse mês.
-Ex: Se o usuário entrar com "março", deve retornar "03" (em string mesmo).
-Números com menos de dois dígitos devem ter um zero na frente.
-Crie então a função e mostre no console os retornos para os meses de março,
-setembro e dezembro.
-Use um console.log para cada mês, usando a frase:
-"O mês de [NOME DO MÊS] é representado pelo número [NÚMERO DO MÊS]."
-*/
-
-  // poderia ser obj
-  // var monthObj = {
-  //   janeiro: '01',
-  //   fevereiro: '02'
-  // }
-  // console.log(monthObj['janeiro'])
-
-  console.log('\nMeses representados por números:');
-  function getMonthNumber(month) {
-    var numberMonth = month.replace(
-      /(janeiro)|(fevereiro)|(março)|(abril)|(maio)|(junho)|(julho)|(agosto)|(setembro)|(outubro)|(novembro)|(dezembro)/,
-      function (total) {
-        if (total === 'março') {
-          return '03';
-        }
-        if (total === 'setembro') {
-          return '09';
-        }
-        if (total === 'junho') {
-          return '06';
-        }
-        if (total === 'julho') {
-          return '07';
-        }
-        return '12';
+  console.log('\nFormatando CPFs corretamente:');
+  function formattedCpf(cpf) {
+    return cpf.replace(
+      /(\d\d\d)(\d\d\d)(\d\d\d)(\d\d)/g,
+      (regex, value1, value2, value3, value4) => {
+        return value1 + '.' + value2 + '.' + value3 + '-' + value4;
       }
     );
-
-    return numberMonth;
   }
 
-  console.log(
-    `O mês de março é representado pelo número ${getMonthNumber('março')}.`
-  );
-  console.log(
-    `O mês de setembro é representado pelo número ${getMonthNumber(
-      'setembro'
-    )}.`
-  );
-  console.log(
-    `O mês de dezembro é representado pelo número ${getMonthNumber(
-      'dezembro'
-    )}.`
-  );
+  console.log(formattedCpf(cleanCPF('049-214 3421-1')));
+  console.log(formattedCpf(cleanCPF('210.458.522-05')));
+  console.log(formattedCpf(cleanCPF('735 500 794 - 22')));
+  console.log(formattedCpf(cleanCPF('101.123-131x32')));
 
   /*
-Agora, declare uma variável chamada `regexDate` que irá receber a expressão
-regular que irá fazer o match com as datas. Crie grupos de captura para o
-dia, o mês e o ano. Para os meses, você pode fazer o match somente com os
-meses que estão no texto, não precisa adicionar todos.
-Com o que vimos até agora, você consegue fazer :D
-Mostre a regex no console.
+Crie uma expressão regular que faça match com as palavras "junho" ou "julho",
+usando o mínimo de caracteres possíveis na regex.
+Para garantir que a regex funciona, teste-a usando o método match. Se houver
+o match, o método retorna um array com os matches. Caso contrário, ele
+retornará null.
+Mostre no console o resultado do match para a frase:
+"Os meses de janeiro, junho e julho começam com a letra j."
+O resultado deve ser:
+["junho", "julho"]
 */
-  console.log('\nRegex que vai fazer o match com as datas do texto:');
-  // var regexDate1 = /(\d\d de)|(junho)|(julho)|(de \d\d\d\d)/g;
-  var regexDate = /(\d\d) de (junho|julho) de (\d\d\d\d)/g;
-  console.log(regexDate);
-  /*
-Agora crie a função que irá fazer o replace dos dados. A função será chamada
-de `replaceDate`. Ela deve retornar a data no formato:
-"[DIA]/[MÊS]/[ANO]"
-Após criar a função, faça o replace das datas no texto, mostrando no
-console o resultado.
-*/
-  console.log('\nReplace de datas:');
-  function replaceDate(regex, day, month, year) {
-    return day + '/' + getMonthNumber(month) + '/' + year;
-  }
+  console.log(
+    '\nMatch com as palavras "junho" ou "julho" para a frase "Os meses de janeiro, junho e julho começam com a letra j.":'
+  );
+  var stringMonth = 'Os meses de janeiro, junho e julho começam com a letra j.';
+  console.log(stringMonth.match(/(junho|julho)/g));
 
-  console.log(text.replace(regexDate, replaceDate));
+  /*
+Crie uma expressão regular que faça o match com a abertura de uma tag
+HTML qualquer.
+Ex.: "<div>", "<section>", "<blockquote>".
+Use o método match e faça o teste com a marcação abaixo:
+"<div><section><blockquote>Texto <img /></blockquote></section></div>"
+O resultado deve ser:
+["<div>", "<section>", "<blockquote>"]
+*/
+  console.log('\nMatch com a abertura de uma tag HTML:');
+  var tags =
+    '<div><section><blockquote>Texto <img /></blockquote></section></div>';
+
+  console.log(tags.match(/[<](\w+)[>]/g));
+  /*
+Crie uma expressão regular que faça o match com uma tag HTML vazia, casando
+com a abertura e fechamento da tag.
+Ex.: "<div></div>", "<section></section>", "<blockquote></blockquote>".
+Use o método match e faça o teste com a marcação abaixo:
+"<div><ul><li></li><li></li><li><span></span></li></ul></div>"
+O resultado deve ser:
+["<li></li>", "<li></li>", "<span></span>"]
+*/
+  console.log('\nMatch com tags HTML vazias (abertura e fechamento da tag):');
+  var newTag = '<div><ul><li></li><li></li><li><span></span></li></ul></div>';
+  console.log(newTag.match(/[<](\w+)[>][<](\/\w+)[>]/g));
+
+  /*
+Vamos complicar um pouco agora :D
+
+Crie uma expressão regular que faça o match com um texto existente dentro de
+uma tag HTML. O texto deve ser capturado e substituído por:
+'O texto dentro da tag "[NOME DA TAG]" é "[TEXTO]"'
+
+Use a marcação abaixo para fazer o replace:
+"<h1>Título da página</h1><p>Este é um parágrafo</p><footer>Rodapé</footer>"
+
+A marcação deve permanecer como está, somente o texto deve ser substituído.
+No replace, utilize quebras de linha para deixar uma tag por linha.
+
+O resultado deve ser esse:
+<h1>O texto dentro da tag "h1" é "Título da página"</h1>
+<p>O texto dentro da tag "p" é "Este é um parágrafo"</p>
+<footer>O texto dentro da tag "footer" é "Rodapé"</footer>
+
+Uma dica: faça o match aos poucos. Para facilitar o teste, use o site
+https://regex101.com/#javascript e verifique se as capturas estão
+corretas, para depois aplicar no código ;)
+*/
+  console.log('\nFazer replace dos textos das tags:');
+  // ?
 })();
