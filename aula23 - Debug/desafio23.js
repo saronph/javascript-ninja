@@ -55,25 +55,50 @@ input;
   }
 
   function handleClickOperation() {
-    removeLastItemIfItIsAnOperator();
+    $input.value = removeLastItemIfItIsAnOperator($input.value);
     $input.value += this.value;
   }
 
-  function isLastItemAnOperation() {
+  function isLastItemAnOperation(number) {
     var operations = ['+', '-', '*', '/'];
-    var lastItem = $input.value.split('').pop();
+    var lastItem = number.split('').pop();
     return operations.some(function (operator) {
       return operator === lastItem;
     });
   }
 
-  function removeLastItemIfItIsAnOperator() {
-    if (isLastItemAnOperation()) {
-      $input.value = $input.value.slice(0, -1);
+  function removeLastItemIfItIsAnOperator(number) {
+    if (isLastItemAnOperation(number)) {
+      return number.slice(0, -1);
     }
+    return number;
   }
 
   function handleClickEqual() {
-    removeLastItemIfItIsAnOperator();
+    $input.value = removeLastItemIfItIsAnOperator($input.value);
+    var allValues = $input.value.match(/\d+[+\-*\/]?/g);
+    var result = allValues.reduce((accum, current) => {
+      var firstValue = accum.slice(0, -1);
+      var operator = accum.split('').pop();
+      var lastValue = removeLastItemIfItIsAnOperator(current);
+      var lastOperator = isLastItemAnOperation(current)
+        ? current.split('').pop()
+        : '';
+
+      console.log('firstValue', firstValue);
+
+      switch (operator) {
+        case '+':
+          return +firstValue + +lastValue + lastOperator;
+        case '-':
+          return +firstValue - +lastValue + lastOperator;
+        case '*':
+          return +firstValue * +lastValue + lastOperator;
+        case '/':
+          return +firstValue / +lastValue + lastOperator;
+      }
+    });
+
+    $input.value = result;
   }
 })(window, document);
