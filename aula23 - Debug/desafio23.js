@@ -85,8 +85,6 @@ input;
         ? current.split('').pop()
         : '';
 
-      console.log('firstValue', firstValue);
-
       switch (operator) {
         case '+':
           return +firstValue + +lastValue + lastOperator;
