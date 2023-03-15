@@ -1,0 +1,128 @@
+[
+  {
+    "_id": {
+      "$oid": "6409e0753a8e92a918520dbd"
+    },
+    "name": "Inventory Menu",
+    "environment": "WEB",
+    "parentPermission": "",
+    "permissionString": "web_view_inventory"
+  },
+  {
+    "_id": {
+      "$oid": "6409e1a83a8e92a918520dbe"
+    },
+    "name": "Item Search",
+    "environment": "WEB",
+    "parentPermission": "web_view_inventory",
+    "permissionString": "web_view_inventory_item_search"
+  },
+  {
+    "_id": {
+      "$oid": "6409e5ac3a8e92a918520dbf"
+    },
+    "name": "Edit Item",
+    "environment": "WEB",
+    "parentPermission": "web_view_inventory_item_search",
+    "permissionString": "web_edit_inventory_item_search"
+  },
+  {
+    "_id": {
+      "$oid": "6409ee053a8e92a918520dc0"
+    },
+    "name": "Report Menu",
+    "environment": "WEB",
+    "parentPermission": "",
+    "permissionString": "web_view_report"
+  },
+  {
+    "_id": {
+      "$oid": "6409ee9e3a8e92a918520dc2"
+    },
+    "name": "Duplicate Items",
+    "environment": "WEB",
+    "parentPermission": "web_view_report",
+    "permissionString": "web_view_report_duplicate_items"
+  },
+  {
+    "_id": {
+      "$oid": "6409eeab3a8e92a918520dc3"
+    },
+    "name": "Check Pending Imports",
+    "environment": "WEB",
+    "parentPermission": "web_view_report_duplicate_items",
+    "permissionString": "web_add_report_duplicate_items_check_pending_import"
+  },
+  {
+    "_id": {
+      "$oid": "6409ef9a3a8e92a918520dc5"
+    },
+    "name": "Orders",
+    "environment": "WEB",
+    "parentPermission": "web_view_report",
+    "permissionString": "web_view_report_orders"
+  },
+  {
+    "_id": {
+      "$oid": "6409efc33a8e92a918520dc6"
+    },
+    "name": "Force Sync Order",
+    "environment": "WEB",
+    "parentPermission": "web_view_report_orders",
+    "permissionString": "web_edit_report_orders_force_sync_order"
+  },
+  {
+    "_id": {
+      "$oid": "6409efdb3a8e92a918520dc7"
+    },
+    "name": "Settings",
+    "environment": "WEB",
+    "parentPermission": "",
+    "permissionString": "web_view_settings"
+  },
+  {
+    "_id": {
+      "$oid": "6409f02f3a8e92a918520dc8"
+    },
+    "name": "User Management",
+    "environment": "WEB",
+    "parentPermission": "web_view_settings",
+    "permissionString": "web_view_settings_user_management"
+  },
+  {
+    "_id": {
+      "$oid": "6409f0443a8e92a918520dc9"
+    },
+    "name": "Store Management",
+    "environment": "WEB",
+    "parentPermission": "web_view_settings",
+    "permissionString": "web_view_settings_stores"
+  },
+  {
+    "_id": {
+      "$oid": "6409f0a83a8e92a918520dca"
+    },
+    "name": "Manage Orders",
+    "environment": "APP",
+    "parentPermission": "",
+    "permissionString": "app_edit_order"
+  },
+  {
+    "_id": {
+      "$oid": "6409f1833a8e92a918520dcb"
+    },
+    "name": "Access Item Search",
+    "environment": "APP",
+    "parentPermission": "",
+    "permissionString": "app_view_item_search"
+  },
+  {
+    "_id": {
+      "$oid": "6409f18f3a8e92a918520dcc"
+    },
+    "name": "Access Picking",
+    "environment": "APP",
+    "parentPermission": "",
+    "permissionString": "app_view_picking"
+  }
+]
